@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Alcohol drinking status of daily drinking(%) for people aged 14 and over between 2022-2023",
+  "title": "Alcohol drinking status for people aged 14 and over who daily drinking(in %) between 2022-2023",
   "width": 800,
   "height": 450,
   "projection": {"type": "mercator"},
   "data": {
-    "url": "ne_10m_admin_1_states_provinces.topojson", 
+    "url": "https://raw.githubusercontent.com/ZeyuLinn/Week9Homework/refs/heads/main/js/ne_10m_admin_1_states_provinces.topojson", 
     "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
   },
   "transform": [
@@ -13,7 +13,7 @@
       "lookup": "properties.name",
       "from": {
         "data": {
-          "url": "alcohol_drinking_status.csv"
+          "url": "https://raw.githubusercontent.com/ZeyuLinn/Week9Homework/refs/heads/main/data/alcohol_drinking_status.csv"
         },
         "key": "State",
         "fields": ["Daily"]
@@ -24,11 +24,12 @@
   "encoding": {
     "color": {
       "field": "Daily",
-      "type": "quantitative"
+      "type": "quantitative",
+      "scale": {"scheme": "reds"}
     },
     "tooltip": [
       {"field": "properties.name", "type": "nominal", "title": "State"},
-      {"field": "Daily", "type": "quantitative"}
+      {"field": "Daily", "type": "quantitative", "title": "People who daily drinking(%)"}
     ]
   }
 }
